@@ -1,0 +1,155 @@
+body{
+/*
+background-color:#EFEFEF;
+*/
+/*
+background-color:#89B1CE;
+*/
+background-color:#fff;
+}
+
+
+@font-face {
+    font-family: earthorbiter;
+    src: url('../fonts/earthorbiter.ttf');
+}
+
+.ceoslogo{
+  font-family: earthorbiter;
+  font-size:24pt;
+  font-weight:bold;
+  padding:0px;
+}
+
+.card-icons{
+  text-align:center;
+  border-color:#fff!important;
+}
+
+.bigIcon > i{
+
+margin:0px auto;
+margin-left:-10px;
+font-size:48pt;
+border:1px #ccc solid;
+padding:25px 30px;
+border-radius:50%;
+}
+
+.ticon{
+  text-align:center;
+  background:#ccc;
+  padding:0px;
+}
+
+.bigIcon{
+  font-size:60pt;
+  text-align:center;
+  display:inline-block!important;
+  max-width:100px;
+  margin:0px auto;
+}
+
+.bgScanError{
+  background-color:#red!important;
+}
+.bgScanSuccess{
+  background-color:#3BCD40!important;
+}
+
+.mbox{
+height:80px!important;
+background-color:#ccc;
+text-align:center;
+font-size:13pt;
+font-weight:bold;
+margin-bottom:10px;
+}
+.mbox2{
+height:400px!important;
+background-color:#ccc;
+text-align:center;
+font-size:20pt;
+font-weight:bold;
+margin-bottom:10px;
+}
+.barcodefield{
+/*
+  height:80px;
+*/
+}
+.freader{
+  background-color:#f4f4f4;
+  text-align:center;
+  font-size:35px;
+  color:#333;
+}
+/*
+.freader:focus{
+  background-color:yellow;
+  text-align:center;
+  font-size:40px;
+  color:#000;
+}
+*/
+.win{
+-webkit-box-shadow: 1px 0px 26px 0px rgba(50, 50, 50, 0.28);
+-moz-box-shadow:    1px 0px 26px 0px rgba(50, 50, 50, 0.28);
+box-shadow:         1px 0px 26px 0px rgba(50, 50, 50, 0.28);
+}
+.winbar{
+background-color:#F3F3F3!important;
+}
+.winbody{
+background-color:#F9F9F9!important;
+}
+.cliNome{
+text-transform:uppercase;
+}
+.campo-barreader{
+  text-align:center;
+}
+.hoverBlue:hover{
+  background:inherit;
+  color:inherit;
+}
+.hoverBlue:hover{
+  background:#0068B1!important;
+  color:#fff!important;
+  cursor:pointer;
+}
+.custom-switch{
+  cursor:pointer!important;
+}
+.big-checkbox {width: 25px; height: 25px;}
+.displayNone{
+display:none;
+}
+.bigIconReader{
+  margin-top:10px;
+  max-width:80px;
+  height:auto;
+}
+#detalhes-pedido-header{text-align:center!important;}
+#detalhes-pedido-header > tbody > tr > th{font-size:20pt!important;}
+.btnViewLabews{display:inline-block;float:right;}
+.titItemPickRow{
+height:28px;line-height:28px;overflow:hidden!important;
+}
+
+.greenfield{
+  background-color:#008000;
+}
+.grayfield{
+  background-color:#f4f4f4;
+}
+.redfield{
+  background-color:red;
+}
+.minibox{
+  width:100%;
+  height:auto;
+  border:1px #ccc solid;
+}
+
+.cell-noBreak{white-space: normal!important;white-space: nowrap!important;}

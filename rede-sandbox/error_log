@@ -1,0 +1,18 @@
+[28-Feb-2022 19:37:39 America/Sao_Paulo] PHP Notice:  Undefined variable: postFields in /home/ufowayco/ceos.laccord.com.br/labs/ceos-panel/rede-sandbox/rede-sandbox.php on line 27
+[28-Feb-2022 19:37:39 America/Sao_Paulo] PHP Notice:  Array to string conversion in /home/ufowayco/ceos.laccord.com.br/labs/ceos-panel/rede-sandbox/rede-sandbox.php on line 51
+[28-Feb-2022 19:37:39 America/Sao_Paulo] PHP Notice:  Array to string conversion in /home/ufowayco/ceos.laccord.com.br/labs/ceos-panel/rede-sandbox/rede-sandbox.php on line 51
+[28-Feb-2022 19:37:39 America/Sao_Paulo] PHP Notice:  Array to string conversion in /home/ufowayco/ceos.laccord.com.br/labs/ceos-panel/rede-sandbox/rede-sandbox.php on line 52
+[28-Feb-2022 19:37:39 America/Sao_Paulo] PHP Notice:  Array to string conversion in /home/ufowayco/ceos.laccord.com.br/labs/ceos-panel/rede-sandbox/rede-sandbox.php on line 52
+[28-Feb-2022 19:37:39 America/Sao_Paulo] PHP Notice:  Array to string conversion in /home/ufowayco/ceos.laccord.com.br/labs/ceos-panel/rede-sandbox/rede-sandbox.php on line 53
+[28-Feb-2022 19:37:39 America/Sao_Paulo] PHP Notice:  Array to string conversion in /home/ufowayco/ceos.laccord.com.br/labs/ceos-panel/rede-sandbox/rede-sandbox.php on line 53
+[28-Feb-2022 19:37:39 America/Sao_Paulo] PHP Notice:  Array to string conversion in /home/ufowayco/ceos.laccord.com.br/labs/ceos-panel/rede-sandbox/rede-sandbox.php on line 54
+[28-Feb-2022 19:37:39 America/Sao_Paulo] PHP Notice:  Array to string conversion in /home/ufowayco/ceos.laccord.com.br/labs/ceos-panel/rede-sandbox/rede-sandbox.php on line 54
+[28-Feb-2022 19:37:39 America/Sao_Paulo] PHP Notice:  Array to string conversion in /home/ufowayco/ceos.laccord.com.br/labs/ceos-panel/rede-sandbox/rede-sandbox.php on line 55
+[28-Feb-2022 19:37:39 America/Sao_Paulo] PHP Notice:  Array to string conversion in /home/ufowayco/ceos.laccord.com.br/labs/ceos-panel/rede-sandbox/rede-sandbox.php on line 55
+[28-Feb-2022 19:37:39 America/Sao_Paulo] PHP Notice:  Array to string conversion in /home/ufowayco/ceos.laccord.com.br/labs/ceos-panel/rede-sandbox/rede-sandbox.php on line 61
+[28-Feb-2022 19:37:39 America/Sao_Paulo] PHP Notice:  Array to string conversion in /home/ufowayco/ceos.laccord.com.br/labs/ceos-panel/rede-sandbox/rede-sandbox.php on line 61
+[28-Feb-2022 19:37:39 America/Sao_Paulo] PHP Notice:  Undefined variable: postFields in /home/ufowayco/ceos.laccord.com.br/labs/ceos-panel/rede-sandbox/rede-sandbox.php on line 27
+[28-Feb-2022 19:37:39 America/Sao_Paulo] PHP Warning:  array_walk_recursive() expects parameter 1 to be array, string given in /home/ufowayco/ceos.laccord.com.br/labs/ceos-panel/rede-sandbox/rede-sandbox.php on line 84
+[28-Feb-2022 19:41:59 America/Sao_Paulo] PHP Notice:  Undefined variable: postFields in /home/ufowayco/ceos.laccord.com.br/labs/ceos-panel/rede-sandbox/rede-sandbox.php on line 27
+[28-Feb-2022 20:40:47 America/Sao_Paulo] PHP Notice:  Array to string conversion in /home/ufowayco/ceos.laccord.com.br/labs/ceos-panel/rede-sandbox/sandbox.php on line 61
+[28-Feb-2022 20:41:17 America/Sao_Paulo] PHP Notice:  Array to string conversion in /home/ufowayco/ceos.laccord.com.br/labs/ceos-panel/rede-sandbox/sandbox.php on line 61
