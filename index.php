@@ -12,6 +12,8 @@ include_once('config.all.php');
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="assets/css/bootstrap-datepicker.min.css" />
     <link rel="stylesheet" href="assets/fancybox/jquery.fancybox.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-table.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-table-sticky-header.min.css">
     <link rel="stylesheet" href="assets/css/alertify.css">
     <link rel="stylesheet" href="assets/css/alertify.default.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -44,10 +46,15 @@ var loadTAR='<?php echo $loadTAR;?>';
 
     <script src="assets/js/jquery-3.5.1.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
-
     <script src="assets/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="assets/locales/bootstrap-datepicker.pt-BR.min.js" integrity="sha512-mVkLPLQVfOWLRlC2ZJuyX5+0XrTlbW2cyAwyqgPkLGxhoaHNSWesYMlcUjX8X+k45YB8q90s88O7sos86636NQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="assets/locales/bootstrap-datepicker.pt-BR.min.js"></script>
+<!--
     <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+-->
+    <script src="assets/js/bootstrap-table.min.js"></script>
+    <script src="assets/js/bootstrap-table-mobile.min.js"></script>
+    <script src="assets/js/bootstrap-table-pt-BR.min.js"></script>
+    <script src="assets/js/bootstrap-table-sticky-header.min.js"></script>
     <script src="assets/js/alertify.min.js"></script>
     <script src="assets/fancybox/jquery.fancybox.pack.js"></script>
     <script src="assets/js/custom.js?v=<?php echo time();?>"></script>
@@ -58,6 +65,8 @@ var loadTAR='<?php echo $loadTAR;?>';
       $_SESSION['statusMessage'] = '';
       }
       ?>
+      var $table = $('#table')
+      $('#table').bootstrapTable({pagination: true,search: true});
     </script>
   </body>
 </html>

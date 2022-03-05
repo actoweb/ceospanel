@@ -20,7 +20,13 @@
       type: 'ajax',
       href: 'ajax.php?v=table&grid='+wbox+'&di='+wdi+'&df='+wdf,
       padding: 0,
-      autoSize: true
+      autoSize: true,
+      afterShow: function() {
+                // Code to execute after the pop up shows
+                //$('#exampletb').DataTable();
+                var $table = $('#table');
+                $('#table').bootstrapTable({pagination: true,search: true});
+            }
     });
   });
 

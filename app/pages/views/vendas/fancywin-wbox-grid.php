@@ -36,9 +36,20 @@ $str = preg_replace('/\s+/', '_', $str);
 return $str;
 }
 
+/* removido para fora do if(count)*/
+$table        = '';
+$tableHeader  = '<table id="table" data-toggle="table">';
+/* removido para fora do if(count)*/
+
+
 if(count($dt_table)>0){
   $somax=0;
-  $table = '<table class="table table-bordered table-hover">';
+  //$table = '<table class="table table-bordered table-hover">';
+  //////$table  = '<table id="table" data-toggle="table">';
+  //$table  = '<table id="exampletb" class="display" style="width:100%">';
+  //////$table .= '<tbody>';
+
+
 
   if(getVar('grid')=='total-de-pedidos'){
     $tds['dataPedido']      = 'Data';
@@ -124,27 +135,27 @@ if(count($dt_table)>0){
 
     foreach($tds as $keydata => $valuedata){
       if($keydata=='nfe_dataEmissao'){
-        $table .= '<td>'.swdatetime($drow[$keydata],false).'</td>';
+        $table .= '<td class="cell-noBreak">'.swdatetime($drow[$keydata],false).'</td>';
       }elseif($keydata=='dataPedido'){
-        $table .= '<td>'.swdate($drow[$keydata]).'</td>';
+        $table .= '<td class="cell-noBreak">'.swdate($drow[$keydata]).'</td>';
       }elseif($keydata=='nfe_numero'){
-        $table .= '<td><a href="'.$drow['nfe_linkPDF'].'" target="_nfe">'.str_pad($drow['nfe_numero'], 6, '0', STR_PAD_LEFT).'</a></td>';
+        $table .= '<td class="cell-noBreak"><a href="'.$drow['nfe_linkPDF'].'" target="_nfe">'.str_pad($drow['nfe_numero'], 6, '0', STR_PAD_LEFT).'</a></td>';
       }elseif($keydata=='valorPedido'||$keydata=='nfe_valorNota'){
         $somax += $drow[$keydata];
-        $table .= '<td align="right">'.number_format($drow[$keydata],2,',','.').'</td>';
+        $table .= '<td align="right" style="text-align:right;">'.number_format($drow[$keydata],2,',','.').'</td>';
       }elseif($keydata=='nfe_email'||$keydata=='emailCliente'){
-        $table .= '<td align="left">'.strtolower($drow[$keydata]).'</td>';
+        $table .= '<td align="left" class="cell-noBreak">'.strtolower($drow[$keydata]).'</td>';
       }
       elseif($keydata=='nfe_uf'||$keydata=='ufCliente'){
-        $table .= '<td align="left">'.strtoupper($drow[$keydata]).'</td>';
+        $table .= '<td align="left" class="cell-noBreak">'.strtoupper($drow[$keydata]).'</td>';
       }
       elseif($keydata=='ObsNota'){
         $_OBS = strtolower($drow['ObsNota']).' - '.strtolower($drow['ObsInterna']);
         if(strlen($_OBS)>3){$notaObs="<i class=\"bi bi-chat-left-dots-fill\" style=\"font-size:18pt;\" title=\"$_OBS\"></i>";}else{$notaObs='';}
-        $table .= '<td align="left">'.$notaObs.'</td>';
+        $table .= '<td align="left" class="cell-noBreak">'.$notaObs.'</td>';
       }
       else{
-        $table .= '<td>'.ucwords(strtolower(Utf8_ansi($drow[$keydata]))).'</td>';
+        $table .= '<td class="cell-noBreak">'.ucwords(strtolower(Utf8_ansi($drow[$keydata]))).'</td>';
       }
     }
 
@@ -154,11 +165,14 @@ if(count($dt_table)>0){
 
   $table .= '<tr><td colspan="'.(count($tds)-1).'" align="right">Total </td><td align="right">'.number_format($somax,2,',','.').'</td></tr>';
 
-  $table .= '</table>';
 
-
-  echo $table;
 }
+
+  /* removido para fora do if(count)*/
+  //$table .= '</tbody>';
+  $table .= '</table>';
+  echo $tableHeader.$table;
+  /* removido para fora do if(count)*/
 
 ?>
 

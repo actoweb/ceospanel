@@ -15,12 +15,36 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="?opt=fretes">Fretes</a>
-            <a class="dropdown-item" href="?opt=vendas">Vendas</a>
-            <a class="dropdown-item" href="?opt=consulta-plataforma">Consulta Plataforma</a>
+            <a class="dropdown-item" href="?opt=vendas&view=vendas-periodo-resumo">Vendas</a>
+            <a class="dropdown-item" href="?opt=consulta-plataforma&view=consulta-venda">Consulta Plataforma</a>
             <div class="dropdown-divider"></div>
           </div>
         </li>
       </ul>
 
     </div>
+
+
+<div class="pull-right" >
+
+
+<ul class="navbar-nav ml-auto">
+
+            <li class="nav-item dropdown">
+                <a class="nav-link" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <b>
+                    usuario
+                  <i class="fas fa-chevron-down"></i></b>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="mod/perfil"><i class="fa fa-user" aria-hidden="true"></i> Perfil</a>
+                    <a class="dropdown-item" href="<?php echo $app_url;?>"><i class="fa fa-lock" aria-hidden="true"></i> Alterar Senha</a>
+                    <a class="dropdown-item" href="user/logout"><i class="fas fa-sign-out-alt" aria-hidden="true"></i> Logout</a>
+                </div>
+            </li>
+        </ul>
+
+
+</div>
+
   </nav>
