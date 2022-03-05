@@ -158,7 +158,8 @@ for ($i = 0; $i < count($res); $i++)
   $trl .= "\"$v2k\",";
   $trl .= "\"".$line['prazo']."\"\n";
 
-  $trle .= $trl;
+  //$trle .= $trl;
+  $trl .= $trl;
 
 }
 

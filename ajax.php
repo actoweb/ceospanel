@@ -107,18 +107,17 @@ function getStatsJadLog($dados){
           echo "$arv[$m]<br />\n";
         }
 
-        $sts   = $xxx['eventos'];
-        for ($k = 0; $k < count($sts); $k++)
-        {
-          $li=$sts[$k];
-          echo "<b>DATA:</b> $li[data]<br />\n";
-          echo "<b>STATUS:</b> $li[status]<br />\n";
-          echo "<b>UNIDADE:</b> $li[unidade]<br />\n";
-          echo "<hr />\n";
+        $sts   = arrayVar($xxx,'eventos');
+        if(is_array($sts)){
+          for ($k = 0; $k < count($sts); $k++)
+          {
+            $li=$sts[$k];
+            echo "<b>DATA:</b> $li[data]<br />\n";
+            echo "<b>STATUS:</b> $li[status]<br />\n";
+            echo "<b>UNIDADE:</b> $li[unidade]<br />\n";
+            echo "<hr />\n";
+          }
         }
-
-
-
 
 
     }else{

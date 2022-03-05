@@ -1,16 +1,24 @@
 <?php
 session_start();
-/*
+
+$devMode = true;
+
+if($devMode){
+
 define('DBHOST','localhost');
-define('DBNAME','nfeconverse');
+define('DBNAME','ufowayco_blingsinc');
 define('DBUSER','root');
 define('DBPWD','32125');
-*/
+
+
+}else{
 
 define('DBHOST','localhost');
 define('DBNAME','ufowayco_ceos_laccord');
 define('DBUSER','ufowayco_ceos_laccord');
 define('DBPWD','Nv32125//*+');
+
+}
 
 include_once('functions/functions.all.php');
 include_once('functions/functions.html.php');
