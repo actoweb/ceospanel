@@ -2,7 +2,7 @@
 $totNFeDev            = totalDeNotasDevolucoes_noPeriodo($dataInicial,$dataFinal);
 $devolucoesEstimadas  = number_format($totNFeDev['total'],2,',','.');
 ?>
-    <div class="card mt-5">
+    <div class="card mb-5">
       <div class="card-header">
         <b><?php echo $totNFeDev['qtd'];?> : Devoluções (notas de devolução)</b><br /><small>(<?php echo swdata($dataInicial);?> - <?php echo swdata($dataFinal);?>)</small>
       </div>

@@ -2,7 +2,7 @@
 $todosPedidos             = listaTodosPedidos($dataInicial,$dataFinal);
 $valor_bruto_dos_pedidos  = number_format($todosPedidos['total'],2,',','.');
 ?>
-    <div class="card">
+    <div class="card mb-5">
       <div class="card-header">
         <b><?php echo $todosPedidos['qtd'];?> : Total de Pedidos emitidos</b><br /><small>(<?php echo swdata($dataInicial);?> - <?php echo swdata($dataFinal);?>)</small>
       </div>

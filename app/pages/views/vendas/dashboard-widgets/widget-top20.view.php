@@ -1,4 +1,4 @@
-   <div class="card mt-2">
+   <div class="card mb-5">
       <div class="card-header">
         <b>Produtos TOP 20</b><br /><small>(<?php echo swdata($dataInicial);?> - <?php echo swdata($dataFinal);?>)</small>
       </div>

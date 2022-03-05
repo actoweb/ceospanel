@@ -2,7 +2,7 @@
 $totBruto             = totalBrutoDeNotas_noPeriodo($dataInicial,$dataFinal);
 $notasEmitidasBruto   = number_format($totBruto['total'],2,',','.');
 ?>
-    <div class="card">
+    <div class="card mb-5">
       <div class="card-header">
         <b><?php echo $totBruto['qtd'];?> : Notas emitidas</b><br /><small>(<?php echo swdata($dataInicial);?> - <?php echo swdata($dataFinal);?>)</small>
       </div>

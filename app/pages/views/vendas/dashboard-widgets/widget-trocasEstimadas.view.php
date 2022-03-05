@@ -2,7 +2,7 @@
 $totTrocas    = totalDeTrocas_noPeriodo($dataInicial,$dataFinal);
 $totalDeTrocasEstimado    = number_format($totTrocas['total'],2,',','.');
 ?>
-    <div class="card mt-5">
+    <div class="card mb-5">
       <div class="card-header">
         <b><?php echo $totTrocas['qtd'];?> : Trocas estimadas</b><br /><small>(<?php echo swdata($dataInicial);?> - <?php echo swdata($dataFinal);?>)</small>
       </div>

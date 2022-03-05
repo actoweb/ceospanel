@@ -17,7 +17,7 @@
 -->
         </ul>
 
-    <div class="card mt-2">
+    <div class="card mt-2 mb-5">
       <div class="card-header text-white bg-secondary"><b>Perído</b></div>
       <div class="card-body">
 

@@ -1,4 +1,4 @@
-    <div class="card">
+    <div class="card mb-5">
       <div class="card-header">
         <b>Vendas por estado</b><br /><small>(<?php echo swdata($dataInicial);?> - <?php echo swdata($dataFinal);?>)</small>
       </div>
