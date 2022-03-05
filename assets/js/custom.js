@@ -1,14 +1,15 @@
+/*###### CEOSPANEL ###########*/
 
-    $('#datainicial, #datafinal').datepicker({
-        format: "dd/mm/yyyy",
-        language: "pt-BR"
-    });
+  $('#datainicial, #datafinal').datepicker({
+      format: "dd/mm/yyyy",
+      language: "pt-BR"
+  });
 
-    //reset date interval
-    $(document).on("change","select#periodo", function(){
-      $('#datainicial').val('');
-      $('#datafinal').val('');
-    });
+  //reset date interval
+  $(document).on("change","select#periodo", function(){
+    $('#datainicial').val('');
+    $('#datafinal').val('');
+  });
 
   //abre janela fancy com relatorio de notas ou pedidos no periodo informado
   $(document).on("click","a.showGrid", function(e){
@@ -40,35 +41,35 @@
 
   });
 
-/*###### CEOSPANEL ###########*/
-//pesquisa frete jadlog
-$( document ).ready(function() {
-  // Handler for .ready() called.
-      $( ".btconsulta" ).click(function() {
-        var dnf   = $('#danfe').val();
-        var optDo = $('#do').val();
-        if(dnf==''){
-        $('#resultados').html('<center><h3>Selecione uma nota para consultar!<h3></center>');
-        }
-        else
-        {
-        $('#resultados').html('<center><h3>AGUARDE...!<h3></center>');
-        $.ajax({
-          type: "POST",
-          data: { df:dnf,optdo:optDo },
-          url: pathUrl+'ajax.php',
-          dataType: "html",
-          success: function(result){
-            $('#resultados').html('');
-            $('#resultados').html(result);
+
+  //pesquisa frete jadlog
+  $( document ).ready(function() {
+    // Handler for .ready() called.
+        $( ".btconsulta" ).click(function() {
+          var dnf   = $('#danfe').val();
+          var optDo = $('#do').val();
+          if(dnf==''){
+          $('#resultados').html('<center><h3>Selecione uma nota para consultar!<h3></center>');
           }
+          else
+          {
+          $('#resultados').html('<center><h3>AGUARDE...!<h3></center>');
+          $.ajax({
+            type: "POST",
+            data: { df:dnf,optdo:optDo },
+            url: pathUrl+'ajax.php',
+            dataType: "html",
+            success: function(result){
+              $('#resultados').html('');
+              $('#resultados').html(result);
+            }
+          });
+        }
         });
-      }
-      });
 
-      //jump select UF
-      $(document).on("change","select.jumpUF", function(){
-        window.location=pathUrl+'?opt=fretes&view=tabela-jadlog&tar='+loadTAR+'&uf='+$(this).val();
-      });
+        //jump select UF
+        $(document).on("change","select.jumpUF", function(){
+          window.location=pathUrl+'?opt=fretes&view=tabela-jadlog&tar='+loadTAR+'&uf='+$(this).val();
+        });
 
-});
+  });
