@@ -106,6 +106,7 @@ if(count($dt_table)>0){
   $table .= '<thead>';
   $table .= '<tr>';
 
+  $ignoreTH =array();
   foreach($tds as $key => $value){
     if(!in_array($key,$ignoreTH)){
       $table .= '<th>'.$value.'</th>';

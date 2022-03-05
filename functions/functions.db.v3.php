@@ -7,7 +7,7 @@
  * array() campos para o prepare do PDO
  * str2 tipo de retorno esperado (fetch,num)
  * */
-function dbf($query='',$args=array(),$ret='',$db=''){
+function dbf($query='',$args=array(),$ret='',$db='',$dbuser=''){
   $results=false;
     if($query!=''){
     $hostname = DBHOST;
@@ -16,8 +16,8 @@ function dbf($query='',$args=array(),$ret='',$db=''){
     $dbname   = DBNAME;
 
     if($db!=''){
-    $username   = $db;
-    $dbname     = $db;
+    $username   = !empty($dbuser) ? $dbuser : $username;
+    $dbname     = !empty($db) ? $db : $dbname;
     }
 
     try {

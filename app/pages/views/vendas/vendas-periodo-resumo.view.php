@@ -178,6 +178,10 @@ $devolucoesEstimadas      = number_format($totNFeDev['total'],2,',','.');
             $nomeProduto    = strtoupper(trim($a[0]));
             $bestItens[$p]  = array('item'=>$p,$vend,$sku,$prod,$sku_limpa,$nomeProduto);
 
+            if(!arrayVar($totBI,$sku_limpa)){
+            $totBI[$sku_limpa] = 0;
+            }
+
             $totBI[$sku_limpa] += $vend;
 
             if(!isSet($sepSku[$sku_limpa])){

@@ -1,8 +1,0 @@
-05/03/22 - 10:12:15 - Dados para data recebidos: $str(1645489322987-0300) - substr($str, 0, 10) = 1645489322
-05/03/22 - 10:12:15 - Dados para data recebidos: $str(1645489324610-0300) - substr($str, 0, 10) = 1645489324
-05/03/22 - 10:16:32 - Dados para data recebidos: $str(1646140976757-0300) - substr($str, 0, 10) = 1646140976
-05/03/22 - 10:16:32 - Dados para data recebidos: $str(1646140978717-0300) - substr($str, 0, 10) = 1646140978
-05/03/22 - 10:21:59 - Dados para data recebidos: $str(1646154472857-0300) - substr($str, 0, 10) = 1646154472
-05/03/22 - 10:21:59 - Dados para data recebidos: $str(1646219353517-0300) - substr($str, 0, 10) = 1646219353
-05/03/22 - 10:24:12 - Dados para data recebidos: $str(1646171518780-0300) - substr($str, 0, 10) = 1646171518
-05/03/22 - 10:24:12 - Dados para data recebidos: $str(1646171520577-0300) - substr($str, 0, 10) = 1646171520

@@ -19,7 +19,7 @@ $sql = "SELECT
 $res = dbf($sql,array(':dinicial'=>$dataInicial,':dfinal'=>$dataFinal),'fetch');
 
 
-
+if(is_array($res)){
 
 for ($i = 0; $i < count($res); $i++)
 {
@@ -80,3 +80,8 @@ $trow=array();
     chart.draw(data, options);
   }
 </script>
+
+
+<?php
+}
+?>

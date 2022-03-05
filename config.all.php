@@ -3,7 +3,7 @@ session_start();
 
 $devMode = true;
 
-if($devMode){
+if($devMode==true){
 
 define('DBHOST','localhost');
 define('DBNAME','ufowayco_blingsinc');

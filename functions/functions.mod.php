@@ -295,7 +295,10 @@ function vendasPorEstado($dataInicial='',$dataFinal=''){
             WHERE
             (nfe_cfops = :nfe_cfops1 OR  nfe_cfops = :nfe_cfops2)
             AND DATE(nfe_dataEmissao) >= :nfe_dataEmissao1 AND DATE(nfe_dataEmissao) <= :nfe_dataEmissao2
-            AND (nfe_situacao = :nfe_situacao1 OR nfe_situacao = :nfe_situacao2)
+            AND (
+            nfe_situacao = :nfe_situacao1
+            OR nfe_situacao = :nfe_situacao2
+            OR nfe_situacao = :nfe_situacao3)
             AND nfe_tipo = :nfe_tipo
             GROUP BY nfe_uf
             ORDER BY total DESC";
@@ -307,7 +310,8 @@ function vendasPorEstado($dataInicial='',$dataFinal=''){
                           ':nfe_cfops1'=>'5102',
                           ':nfe_cfops2'=>'6108',
                           ':nfe_situacao1'=>'Autorizada',
-                          ':nfe_situacao2'=>'Emitida DANFE'),'fetch','ufowayco_blingsinc');
+                          ':nfe_situacao2'=>'Emitida DANFE',
+                          ':nfe_situacao3'=>'Enviada - Aguardando protocolo'),'fetch','ufowayco_blingsinc');
     return $res;
 
 }
@@ -427,7 +431,12 @@ $sql  = "SELECT
         ORDER BY dataPedido DESC";
 
 
-  $res = dbf($sql,array(':dataInicial'=>$dataInicial,':dataFinal'=>$dataFinal),'fetch','ufowayco_blingsinc');
+  //$res = dbf($sql,array(':dataInicial'=>$dataInicial,':dataFinal'=>$dataFinal),'fetch','ufowayco_blingsinc');
+  $res = dbf($sql,array(':dataInicial'=>$dataInicial,':dataFinal'=>$dataFinal),'fetch');
+
+  $result = false;
+
+  if(is_array($res)){
 
   $total=0;
   for ($i = 0; $i < count($res); $i++)
@@ -436,7 +445,13 @@ $sql  = "SELECT
     $total += (float) $drow['valorPedido'];
   }
 
-  $result=array('res'=>$res[0],'qtd'=>count($res),'total'=>$total,'resData'=>$res);
+  $resDATA=array();
+  if(isSet($res[0])){
+    $resDATA = $res[0];
+  }
+
+  $result=array('res'=>$resDATA,'qtd'=>count($res),'total'=>$total,'resData'=>$res);
+  }
   return $result;
 }
 
@@ -450,8 +465,10 @@ function totalBrutoDeNotas_noPeriodo($dataInicial,$dataFinal){
           WHERE
           nfe_tipo = 'S'
           AND (nfe_cfops = '5102' OR  nfe_cfops = '6108')
-          AND (nfe_situacao = 'Autorizada'
-          OR nfe_situacao = 'Emitida DANFE' OR nfe_situacao = 'Enviada - Aguardando protocolo')
+          AND (
+          nfe_situacao = 'Autorizada'
+          OR nfe_situacao = 'Emitida DANFE'
+          OR nfe_situacao = 'Enviada - Aguardando protocolo')
           AND DATE(nfe_dataEmissao) >= :dataInicial AND DATE(nfe_dataEmissao) <= :dataFinal
           ORDER BY nfe_dataEmissao";
 
@@ -464,7 +481,12 @@ function totalBrutoDeNotas_noPeriodo($dataInicial,$dataFinal){
     $total += (float) $drow['nfe_valorNota'];
   }
 
-  $result=array('res'=>$res[0],'qtd'=>count($res),'total'=>$total,'resData'=>$res);
+  $resDATA=array();
+  if(isSet($res[0])){
+    $resDATA = $res[0];
+  }
+
+  $result=array('res'=>$resDATA,'qtd'=>count($res),'total'=>$total,'resData'=>$res);
   return $result;
 
 }
@@ -490,7 +512,12 @@ function totalDeNotasDevolucoes_noPeriodo($dataInicial,$dataFinal){
     $total += (float) $drow['nfe_valorNota'];
   }
 
-  $result=array('res'=>$res[0],'qtd'=>count($res),'total'=>$total,'resData'=>$res);
+  $resDATA=array();
+  if(isSet($res[0])){
+    $resDATA = $res[0];
+  }
+
+  $result=array('res'=>$resDATA,'qtd'=>count($res),'total'=>$total,'resData'=>$res);
   return $result;
 
 }
@@ -536,7 +563,12 @@ function totalDeTrocas_noPeriodo($dataInicial,$dataFinal){
     $total += (float) $drow['valorNota'];
   }
 
-  $result=array('res'=>$res[0],'qtd'=>count($res),'total'=>$total,'resData'=>$res);
+  $resDATA=array();
+  if(isSet($res[0])){
+    $resDATA = $res[0];
+  }
+
+  $result=array('res'=>$resDATA,'qtd'=>count($res),'total'=>$total,'resData'=>$res);
   return $result;
 
 }
@@ -562,7 +594,12 @@ function totalDeBonificacoes_noPeriodo($dataInicial,$dataFinal){
     $total += $drow['nfe_valorNota'];
   }
 
-  $result=array('res'=>$res[0],'qtd'=>count($res),'total'=>$total,'resData'=>$res);
+  $resDATA=array();
+  if(isSet($res[0])){
+    $resDATA = $res[0];
+  }
+
+  $result=array('res'=>$resDATA,'qtd'=>count($res),'total'=>$total,'resData'=>$res);
   return $result;
 
 }

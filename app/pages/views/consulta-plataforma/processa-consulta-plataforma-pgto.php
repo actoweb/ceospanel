@@ -102,8 +102,6 @@ function epoch2Date($str=''){
   if($str){
     $str = str_replace("/Date(",'',$str);
     $str = str_replace(")/",'',$str);
-    logsys('Dados para data recebidos: $str('.$str.') - substr($str, 0, 10) = '.substr($str, 0, 10),false,'logs','correcoes.log.txt');
-
     $str = date("Y-m-d H:i:s", substr($str, 0, 10));
   }
   return $str;
