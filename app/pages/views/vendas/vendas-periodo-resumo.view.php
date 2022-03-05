@@ -1,21 +1,6 @@
 <?php
 $di = swdata($dataInicial);
 $df = swdata($dataFinal);
-
-$todosPedidos = listaTodosPedidos($dataInicial,$dataFinal);
-$totBruto     = totalBrutoDeNotas_noPeriodo($dataInicial,$dataFinal);
-$totTrocas    = totalDeTrocas_noPeriodo($dataInicial,$dataFinal);
-$totNFeDev    = totalDeNotasDevolucoes_noPeriodo($dataInicial,$dataFinal);
-$totBoni      = totalDeBonificacoes_noPeriodo($dataInicial,$dataFinal);
-
-
-$valor_bruto_dos_pedidos  = number_format($todosPedidos['total'],2,',','.');
-$notasEmitidasBruto       = number_format($totBruto['total'],2,',','.');
-$totalDeTrocasEstimado    = number_format($totTrocas['total'],2,',','.');
-$totalDeBonificacoes      = number_format($totBoni['total'],2,',','.');
-$devolucoesEstimadas      = number_format($totNFeDev['total'],2,',','.');
-
-
 ?>
 
 <div class="row">
@@ -23,206 +8,39 @@ $devolucoesEstimadas      = number_format($totNFeDev['total'],2,',','.');
 
   <div class="col-md-4">
 
-    <div class="card">
-      <div class="card-header">
-        <b><?php echo $todosPedidos['qtd'];?> : Total de Pedidos emitidos</b><br /><small>(<?php echo swdata($dataInicial);?> - <?php echo swdata($dataFinal);?>)</small>
-      </div>
-      <div class="card-body">
-        <h1 class="card-title"> <a href="#" class="showGrid" data-wbox='total-de-pedidos' data-di='<?php echo $dataInicial;?>' data-df='<?php echo $dataFinal;?>'>R$
-          <?php
-          echo $valor_bruto_dos_pedidos;
-          ?></a>
-        </h1>
-        <small>Volume total em Pedidos realizados na loja online ou internamente</small>
-<!--
-        <table class="table-bordered" style="width:100%;">
-          <tr>
-            <td width="150">Vendas Cartão</td>
-            <td>R$ 000,00</td>
-          </tr>
-          <tr>
-            <td>Vendas Pix</td>
-            <td>R$ 000,00</td>
-          </tr>
-        </table>
--->
-      </div>
-    </div>
+    <?php
+    //box total de pedidos emitidos
+    include_once('app/pages/views/vendas/dashboard-widgets/widget-totalPedidosEmitidos.view.php');?>
 
-    <div class="card mt-5">
-
-      <div class="card-header">
-        <b><?php echo $totNFeDev['qtd'];?> : Devoluções (notas de devolução)</b><br /><small>(<?php echo swdata($dataInicial);?> - <?php echo swdata($dataFinal);?>)</small>
-      </div>
-      <div class="card-body">
-        <h1 class="card-title"> <a href="#" class="showGrid" data-wbox='notas-de-devolucao' data-di='<?php echo $dataInicial;?>' data-df='<?php echo $dataFinal;?>'>R$
-          <?php
-          echo $devolucoesEstimadas;
-          ?></a>
-        </h1>
-        <small>"Valor total em Nfe de dev.(entrada) cfops 1202 e 2202"</small>
-      </div>
-    </div>
-
+    <?php
+    //box notas de devolução
+    include_once('app/pages/views/vendas/dashboard-widgets/widget-notasDevolucao.view.php');?>
 
   </div>
   <div class="col-md-4">
 
-    <div class="card">
-      <div class="card-header">
-        <b><?php echo $totBruto['qtd'];?> : Notas emitidas</b><br /><small>(<?php echo swdata($dataInicial);?> - <?php echo swdata($dataFinal);?>)</small>
-      </div>
-      <div class="card-body">
-        <h1 class="card-title"> <a href="#" class="showGrid" data-wbox='notas-emitidas' data-di='<?php echo $dataInicial;?>' data-df='<?php echo $dataFinal;?>'>R$
-          <?php
-          echo $notasEmitidasBruto;
-          ?></a>
-        </h1>
-        <small>Notas fiscais emitidas (CFOPs 5102 e 6108) <b>pode incluir trocas</b></small>
-      </div>
-    </div>
+    <?php
+    //box total de notas emitidas
+    include_once('app/pages/views/vendas/dashboard-widgets/widget-notasEmitidas.view.php');?>
 
-    <div class="card mt-5">
-      <div class="card-header">
-        <b><?php echo $totTrocas['qtd'];?> : Trocas estimadas</b><br /><small>(<?php echo swdata($dataInicial);?> - <?php echo swdata($dataFinal);?>)</small>
-      </div>
-      <div class="card-body">
-        <h1 class="card-title"> <a href="#" class="showGrid" data-wbox='trocas-estimadas' data-di='<?php echo $dataInicial;?>' data-df='<?php echo $dataFinal;?>'>R$
-          <?php
-          echo $totalDeTrocasEstimado;
-          ?></a>
-        </h1>
-        <small>Em notas fiscais emitidas</small>
-      </div>
-    </div>
+    <?php
+    //box trocas estimadas
+    include_once('app/pages/views/vendas/dashboard-widgets/widget-trocasEstimadas.view.php');?>
 
-    <div class="card mt-5">
-      <div class="card-header">
-        <b><?php echo $totBoni['qtd'];?> : Bonificações</b><br /><small>(<?php echo swdata($dataInicial);?> - <?php echo swdata($dataFinal);?>)</small>
-<!--
-        <a href="#" class="showGrid"></a>
--->
-      </div>
-      <div class="card-body">
-        <h1 class="card-title"> <a href="#" class="showGrid" data-wbox='bonificacoes' data-di='<?php echo $dataInicial;?>' data-df='<?php echo $dataFinal;?>'>R$
-          <?php
-          echo $totalDeBonificacoes;
-          ?></a>
-        </h1>
-        <small>Notas fiscais emitidas (CFOPs 5910 e 6910)</small>
-      </div>
-    </div>
+    <?php
+    //box total de bonificacoes
+    include_once('app/pages/views/vendas/dashboard-widgets/widget-bonificacoes.view.php');?>
 
   </div>
   <div class="col-md-4">
 
-    <div class="card">
-      <div class="card-header">
-        <b>Vendas por estado</b><br /><small>(<?php echo swdata($dataInicial);?> - <?php echo swdata($dataFinal);?>)</small>
-      </div>
-      <div class="card-body">
-        <div style="height:200px!important;overflow:auto!important;">
-          <table class="table table-bordered">
-          <?php
-          $res  = vendasPorEstado($dataInicial,$dataFinal);
-          $sum  = 0;
-          for ($e = 0; $e < count($res); $e++)
-          { $drow = $res[$e];
-            $uf   = $drow['nfe_uf'];
-            $sum += $drow['total'];
-            $tot  = number_format($drow['total'],2,',','.');
-            echo "<tr><td>$uf</td><td>$tot</td></tr>";
-          }
-          ?>
-          <tr><td>Total</td><td><?php echo number_format($sum,2,',','.');?></td></tr>
-          </table>
+    <?php
+    //box total de vendas por estado
+    include_once('app/pages/views/vendas/dashboard-widgets/widget-vendasPorEstado.view.php');?>
 
-          </div>
-      </div>
-    </div>
-
-
-    <div class="card mt-2">
-      <div class="card-header">
-        <b>Produtos TOP 20</b><br /><small>(<?php echo swdata($dataInicial);?> - <?php echo swdata($dataFinal);?>)</small>
-      </div>
-      <div class="card-body">
-        <div style="height:200px!important;overflow:auto!important;">
-
-          <table class="table table-bordered">
-          <?php
-
-
-
-
-
-          $res  = topProdutos($dataInicial,$dataFinal);
-          //print_r($res);
-          $totVenda   = 0;
-          $sepProduct = array();
-          $sepSku     = array();
-          $bestItens  = array();
-          $totBI      = array();
-          $nomePrd    = array();
-          $gl=1;
-          for ($p = 0; $p < count($res); $p++)
-          {
-            //if($gl<=20){
-            $drow           = $res[$p];
-            $prod           = $drow['produto'];
-            $vend           = $drow['vendas'];
-            $sku            = $drow['sku'];
-
-            $sku_limpa      = limpaSku($sku);
-            $a              = explode('Tamanho',$prod);
-            $nomeProduto    = strtoupper(trim($a[0]));
-            $bestItens[$p]  = array('item'=>$p,$vend,$sku,$prod,$sku_limpa,$nomeProduto);
-
-            if(!arrayVar($totBI,$sku_limpa)){
-            $totBI[$sku_limpa] = 0;
-            }
-
-            $totBI[$sku_limpa] += $vend;
-
-            if(!isSet($sepSku[$sku_limpa])){
-              $sepSku[$sku_limpa] = $nomeProduto;
-            }
-
-          //$gl++;
-          //}
-
-          }
-
-          arsort($totBI);
-
-          $cc=1;
-          foreach($totBI as $keySku => $valueSku){
-            //if($cc<=20){
-              $sku_prod = $keySku;
-              $nom_prod = $sepSku[$keySku];
-              $qtd_prod = $valueSku;
-              //echo "<tr><td><small>#$cc - $sku_prod</small></td><td><a href=\"#\" class=\"showTopProd\" data-sku=\"$sku\" data-di=\"$dataInicial\" data-df=\"$dataFinal\" data-dpn=\"".base64_encode($nom_prod)."\"><small>$nom_prod</small></td><td>$qtd_prod</td></tr></a>";
-              echo "<tr><td><small>#$cc</small></td><td><a href=\"#\" class=\"showTopProd\" data-sku=\"$sku_prod\" data-di=\"$dataInicial\" data-df=\"$dataFinal\" data-dpn=\"".base64_encode($nom_prod)."\"><small>$nom_prod</small></td><td>$qtd_prod</td></tr></a>";
-              $cc++;
-            //}
-          }
-
-
-
-          ?>
-          </table>
-
-          </div>
-          <small>Com base em Nfe's (CFOPs 5102 e 6108) pode incluir trocas</small>
-          <?php
-          //~ arsort($sepProduct);
-          //~ echo json_encode($sepProduct);
-          //~ echo '<hr />';
-          //~ echo json_encode($totBI);
-          ?>
-      </div>
-    </div>
-
+    <?php
+    //box PRODUTOS TOP 20 (mais vendidos)
+    include_once('app/pages/views/vendas/dashboard-widgets/widget-top20.view.php');?>
 
   </div>
 
@@ -230,7 +48,6 @@ $devolucoesEstimadas      = number_format($totNFeDev['total'],2,',','.');
 
 
 <div class="row mt-5">
-
 
 
 </div>

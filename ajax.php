@@ -4,11 +4,13 @@ include_once('functions/functions.all.php');
 
 if(getVar('topprod')!=''){
 
-include_once('app/pages/views/vendas/top-prod.php');
+//janela fancy com a tabela com os detalhes dos itens mais vendidos
+include_once('app/pages/views/vendas/fancywin-top-prod.php');
 
 }elseif(getVar('v')=='table' && getVar('grid')!=''){
 
-include_once('app/pages/views/vendas/wbox-grid.php');
+//janela fancy com a tabela das vendas do dashboard
+include_once('app/pages/views/vendas/fancywin-wbox-grid.php');
 
 }
 
