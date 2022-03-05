@@ -1,39 +1,34 @@
 <?php
-
+/*
+ * LOG: Nome anterior do arquivo res-consulta-pgto.view.php
+ * alterado para coerencia: processa-consulta-plataforma-pgto.php
+ *
+ * */
 
 $n_pedido = $_POST['numeroPedido'];
 
-$url = 'https://laccord.layer.core.dcg.com.br/v1/Sales/API.svc/web/GetOrderByNumber';
-//$url = 'https://laccord.layer.core.dcg.com.br/v1/Sales/API.svc/web/UpdateOrder';
-
-$ch = curl_init($url);
+$url  = 'https://laccord.layer.core.dcg.com.br/v1/Sales/API.svc/web/GetOrderByNumber';
+$ch   = curl_init($url);
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, array(
   'Content-Type: application/json',
   'Accept: application/json',
-  'Authorization: Basic aW50ZWdyYWNhby5taWxsZW5uaXVtOmludEBnckBjYW8xMjM=')
+  'Authorization: Basic '.TOKEN_LC)
 );
-//curl_setopt($ch, CURLOPT_POSTFIELDS, '{"OrderNumber": "01002","WorkflowType": "Canceled"}');
-//curl_setopt($ch, CURLOPT_POSTFIELDS, '{"OrderNumber": "01002","WorkflowType": "Delivered"}');
-//curl_setopt($ch, CURLOPT_POSTFIELDS, '01002');
 curl_setopt($ch, CURLOPT_POSTFIELDS, "$n_pedido");
-
 # Return response instead of printing.
 curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
 # Send request.
 $result = curl_exec($ch);
 curl_close($ch);
 
-//echo $result;
-
-$dadosPedido = json_decode($result,true);
-
-
-$infoDate   = $dadosPedido['AcquiredDate'];
-$infoPag    = $dadosPedido['PaymentMethods'];
-$statusPed  = $dadosPedido['OrderStatusID'];
-$dtCancel   = $dadosPedido['CancelledDate'];
+//dados do pedido
+$dadosPedido  = json_decode($result,true);
+$infoDate     = $dadosPedido['AcquiredDate'];
+$infoPag      = $dadosPedido['PaymentMethods'];
+$statusPed    = $dadosPedido['OrderStatusID'];
+$dtCancel     = $dadosPedido['CancelledDate'];
 
 /*
  * status = 6 //cancelado
@@ -43,9 +38,10 @@ $dtCancel   = $dadosPedido['CancelledDate'];
  *
  * */
 
+//detalhes do pedido
 $qtdPgtos       = $dadosPedido['PaymentMethods'];//total
 $total          = $dadosPedido['PaymentMethods'][0]['Amount'];//total
-$total2         = $dadosPedido['PaymentMethods'][1]['Amount'];//total
+$total2         = isSet($dadosPedido['PaymentMethods'][1]['Amount']) ? $dadosPedido['PaymentMethods'][1]['Amount'] : 0; //total
 $vlr_parcelas   = $dadosPedido['PaymentMethods'][0]['InstallmentAmount'];//valor parcela
 $num_parcelas   = $dadosPedido['PaymentMethods'][0]['Installments'];//numero parcela
 $orderID        = $dadosPedido['PaymentMethods'][0]['OrderID'];//OrderID
@@ -54,35 +50,20 @@ $pgto_info      = $dadosPedido['PaymentMethods'][0]['PaymentInfo']['Alias'];//me
 $dt_pgto        = $dadosPedido['PaymentMethods'][0]['PaymentDate'];//data do pagamento
 
 $status_label   ='';
-
-
-//if($dtCancel!=''){$status_label = "PEDIDO CANCELADO EM: ".swdatetime( epoch2Date($dtCancel) );}
-//if($dtCancel!=''){$status_label = "EM: ".swdatetime( epoch2Date($dtCancel) );}
 $status_label = "EM: ".swdatetime( epoch2Date($dtCancel) );
 
 
 if($statusPed=='7'){
-
   $status_label = "PAGAMENTO APROVADO EM: ".swdatetime( epoch2Date($dt_pgto) );
-
 }
 if($statusPed=='4'){
-
-  //if($dtCancel!=''){$status_label = "PEDIDO CANCELADO EM: ".swdatetime( epoch2Date($dtCancel) );}
   $status_label = "PAGAMENTO APROVADO";
-
 }
 if($statusPed=='5'){
-
-  //if($dtCancel!=''){$status_label = "PEDIDO CANCELADO EM: ".swdatetime( epoch2Date($dtCancel) );}
   $status_label = "PEDIDO ENTREGUE";
-
 }
 if($statusPed=='6'){
-
-  //if($dtCancel!=''){$status_label = "PEDIDO CANCELADO EM: ".swdatetime( epoch2Date($dtCancel) );}
   $status_label = "PEDIDO CANCELADO";
-
 }
 
 
@@ -117,20 +98,25 @@ function tipoPgtoPlataforma($str=''){
   return $str;
 }
 
-function epoch2Date($str){
-  $str = str_replace("/Date(",'',$str);
-  $str = str_replace(")/",'',$str);
-  $str = date("Y-m-d H:i:s", substr($str, 0, 10));
+function epoch2Date($str=''){
+  if($str){
+    $str = str_replace("/Date(",'',$str);
+    $str = str_replace(")/",'',$str);
+    logsys('Dados para data recebidos: $str('.$str.') - substr($str, 0, 10) = '.substr($str, 0, 10),false,'logs','correcoes.log.txt');
+
+    $str = date("Y-m-d H:i:s", substr($str, 0, 10));
+  }
   return $str;
 }
 
 $dataPedido = (string) $infoDate;
 
-$meiosPgto['PIX'] = 'assets/images/pix.png';
-$meiosPgto['CARTÃO CRED. ELO'] = 'assets/images/cielo.png';
-$meiosPgto['CARTÃO CRED. MASTER'] = 'assets/images/master.png';
-$meiosPgto['CARTÃO CRED. VISA'] = 'assets/images/visa.png';
-$meiosPgto['CARTÃO CRED. HIPERCARD'] = 'assets/images/hipercard.png';
+//ICONES DOS MEIOS PAGAMENTO
+$meiosPgto['PIX']                     = 'assets/images/pix.png';
+$meiosPgto['CARTÃO CRED. ELO']        = 'assets/images/cielo.png';
+$meiosPgto['CARTÃO CRED. MASTER']     = 'assets/images/master.png';
+$meiosPgto['CARTÃO CRED. VISA']       = 'assets/images/visa.png';
+$meiosPgto['CARTÃO CRED. HIPERCARD']  = 'assets/images/hipercard.png';
 
 
 

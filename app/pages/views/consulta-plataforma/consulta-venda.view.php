@@ -21,7 +21,7 @@
 
     <?php
     if(isSet($_POST['numeroPedido'])&&$_POST['numeroPedido']!=''){
-      $consulta_script = "app/pages/views/consulta-plataforma/res-consulta-pgto.view.php";
+      $consulta_script = "app/pages/views/consulta-plataforma/processa-consulta-plataforma-pgto.php";
       include_once($consulta_script);
     }
     ?>

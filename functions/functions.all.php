@@ -174,7 +174,7 @@ function swdatetime($dateTime,$exibeHora=true){
   $t  = explode(' ',$dateTime);
   $str= $t[0];
   if($exibeHora==true){
-  $horaData = $t[1];
+  $horaData = isSet($t[1]) ? $t[1] : '';
   }else{
   $horaData = '';
   }
@@ -343,20 +343,38 @@ function dt2my($str){
 
 $saveLogs=true;
 //funcao para anotar no log de atividades
-function logsys($str){
+//~ function logsys($str){
+  //~ global $saveLogs;
+  //~ if($saveLogs){
+    //~ $fp = fopen('sys.log.txt', 'a');
+    //~ fwrite($fp, date('d/m/y - H:i:s').' - '.$str."\n");
+    //~ fclose($fp);
+  //~ }
+  //~ if(isSet($_GET['logclear']) && $_GET['logclear']=='clearll'){
+    //~ $fp = fopen('sys.log.txt', 'w');
+    //~ fwrite($fp, 'ZERANDO O ARQUIVO: '.date('d/m/y - H:i:s').' - '.$str."\n");
+    //~ fclose($fp);
+  //~ }
+//~ }
+
+function logsys($str,$reset=false,$dir='logs',$logFile='sys.log.txt'){
   global $saveLogs;
   if($saveLogs){
-    $fp = fopen('sys.log.txt', 'a');
+    $fp = fopen($dir.'/'.$logFile, 'a');
     fwrite($fp, date('d/m/y - H:i:s').' - '.$str."\n");
     fclose($fp);
   }
+  if($reset==true){
+    $fp = fopen($dir.'/'.$logFile, 'w');
+    fwrite($fp, 'ZERANDO O ARQUIVO: '.date('d/m/y - H:i:s').' - '.$str."\n");
+    fclose($fp);
+  }
   if(isSet($_GET['logclear']) && $_GET['logclear']=='clearll'){
-    $fp = fopen('sys.log.txt', 'w');
+    $fp = fopen($dir.'/'.$logFile, 'w');
     fwrite($fp, 'ZERANDO O ARQUIVO: '.date('d/m/y - H:i:s').' - '.$str."\n");
     fclose($fp);
   }
 }
-
 
 // funcao helper para acesso de variaveis post, get, session, cookie, data e array
 function chkVar($varname){
