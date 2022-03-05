@@ -1,50 +1,8 @@
-<div class="card">
-  <div class="card-header">
-    Consultar Frete por NFe
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">NFE's Disponíveis para Consulta</h5>
-
-
-
-      <form>
-        <div class="form-row">
-          <div class="form-group col-md-12">
-            <label for="danfe">Selecionar nota</label>
-
-            <select id="danfe" name="danfe" class="form-control">
-              <option value="">Notas...</option>
-              <?php echo selectNFEs();?>
-            </select>
-
-          </div>
-        </div>
-        <input type="hidden" id="do" name="do" value="getFreteStatus" />
-        <button type="button" class="btn btn-primary btconsulta">Consultar</button>
-      </form>
-
-  <div id="resultados">
-    <hr />
-    Resultados:
-  </div>
-
-  </div>
-  <div class="card-footer text-muted">
-  <small><b>UFO WAY LABS - TI TEAM</b></small>
-  </div>
-
-</div>
-
-
-
-
 <?php
-
     $danfe  = postVar('df');
     if(strlen($danfe)>3){
-    $token  = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOjEwODQ2MCwiZHQiOiIyMDIxMDgwOCJ9.32z_38T1YzqyooKc6K19Ix47umBHwQb7_66PMyvRFcQ';
+    $token  = $token_jadlog;
     $apiUrl = 'https://www.jadlog.com.br/embarcador/api/tracking/consultar';
-
 
     $data_string = '{"consulta":[{"df":{"danfe":"'.$danfe.'","cnpjRemetente":"41747186000124","tpDocumento":2}}]}';
     $ch = curl_init($apiUrl);
@@ -93,23 +51,21 @@
       echo "$arv[$m]<br />\n";
     }
 
-    $sts   = $xxx['eventos'];
-    for ($k = 0; $k < count($sts); $k++)
-    {
-      $li=$sts[$k];
-      echo "<b>DATA:</b> $li[data]<br />\n";
-      echo "<b>STATUS:</b> $li[status]<br />\n";
-      echo "<b>UNIDADE:</b> $li[unidade]<br />\n";
-      echo "<hr />\n";
+    $sts   = arrayVar($xxx,'eventos');
+    if(is_array($sts)){
+      for ($k = 0; $k < count($sts); $k++)
+      {
+        $li=$sts[$k];
+        echo "<b>DATA:</b> $li[data]<br />\n";
+        echo "<b>STATUS:</b> $li[status]<br />\n";
+        echo "<b>UNIDADE:</b> $li[unidade]<br />\n";
+        echo "<hr />\n";
+      }
     }
 
 
-
-
-
 }else{
-
-  echo "<hr />\n";
-
+echo "<hr />\n";
 }
+
 ?>

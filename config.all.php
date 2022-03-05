@@ -20,6 +20,7 @@ define('DBPWD','Nv32125//*+');
 
 }
 
+include_once('credentials.php');
 include_once('functions/functions.all.php');
 include_once('functions/functions.html.php');
 include_once('functions/functions.db.v3.php');

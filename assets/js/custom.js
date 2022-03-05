@@ -40,12 +40,13 @@
 
   });
 
-
+/*###### CEOSPANEL ###########*/
 //pesquisa frete jadlog
 $( document ).ready(function() {
   // Handler for .ready() called.
       $( ".btconsulta" ).click(function() {
-        var dnf = $('#danfe').val();
+        var dnf   = $('#danfe').val();
+        var optDo = $('#do').val();
         if(dnf==''){
         $('#resultados').html('<center><h3>Selecione uma nota para consultar!<h3></center>');
         }
@@ -54,7 +55,7 @@ $( document ).ready(function() {
         $('#resultados').html('<center><h3>AGUARDE...!<h3></center>');
         $.ajax({
           type: "POST",
-          data: { df:dnf },
+          data: { df:dnf,optdo:optDo },
           url: pathUrl+'ajax.php',
           dataType: "html",
           success: function(result){

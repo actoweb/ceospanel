@@ -44,11 +44,6 @@ function getStatsJadLog($dados){
 
 
 function selectNFEs(){
-//~ $se = dbf("SELECT * FROM converse_nfesbling
-      //~ WHERE xmlnota LIKE :transportadora
-      //~ AND (situacaonfe != 'Cancelada' AND situacaonfe != 'Pendente')
-      //~ ORDER BY emissao DESC",
-      //~ array(':transportadora'=>'%E-COMMERCE-LOG%'),'fetch');
 
 $se = dbf("SELECT * FROM bs_notas
       WHERE nfe_xml_nota LIKE :transportadora
