@@ -1,7 +1,8 @@
 <?php
 $produtoSKU_pai = getVar('topprod');
 ?>
-<div class="card-header"style="min-width:600px;">
+<div class="card" style="min-width:600px;">
+<div class="card-header">
 <h4>Ítens relacionados - <?php echo $produtoSKU_pai;?></h4>
 </div>
 <div class="card-body">
@@ -54,4 +55,4 @@ echo '<tr><td colspan="2" align="right">Total</td><td align="right">'.$somaItem.
 
 </div>
 </div>
-</div>
+

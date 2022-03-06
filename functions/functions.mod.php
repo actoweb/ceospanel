@@ -55,23 +55,23 @@ function limpaSku($str){ /*em uso ceospanel dashboard TOP 20*/
     $str  = $pre.'LA'.$tail;
   }
 
-return $str;
+  return $str;
 }
 
 function topProdutos($dataInicial,$dataFinal){ /*em uso ceospanel dashboard*/
 
-$sql='SELECT
-      itens.item_sku as sku,
-      itens.item_descricao as produto,
-      count(itens.id) as vendas
-      FROM bs_notas_itens as itens, bs_notas as notas
-      WHERE
-      itens.item_cfop IN (:nfe_cfops1,:nfe_cfops2)
-      AND itens.item_numeroNota = notas.nfe_numero
-      AND notas.nfe_dataEmissao BETWEEN DATE(:dataInicial) AND DATE(:dataFinal)
-      AND NOT itens.item_sku IN (:exclude)
-      GROUP BY item_sku
-      ORDER BY vendas  DESC LIMIT 0,50';
+  $sql='SELECT
+        itens.item_sku as sku,
+        itens.item_descricao as produto,
+        count(itens.id) as vendas
+        FROM bs_notas_itens as itens, bs_notas as notas
+        WHERE
+        itens.item_cfop IN (:nfe_cfops1,:nfe_cfops2)
+        AND itens.item_numeroNota = notas.nfe_numero
+        AND notas.nfe_dataEmissao BETWEEN DATE(:dataInicial) AND DATE(:dataFinal)
+        AND NOT itens.item_sku IN (:exclude)
+        GROUP BY item_sku
+        ORDER BY vendas  DESC LIMIT 0,50';
 
     $res = dbf($sql,array(
                           ':exclude'=>'15191',
@@ -86,18 +86,18 @@ $sql='SELECT
 
 function topProdutosByDesc($desc,$dataInicial,$dataFinal){
 
-$sql='SELECT
-      itens.item_sku as sku,
-      itens.item_descricao as produto,
-      count(itens.id) as vendas
-      FROM bs_notas_itens as itens, bs_notas as notas
-      WHERE
-      itens.item_cfop IN (:nfe_cfops1,:nfe_cfops2)
-      AND itens.item_numeroNota = notas.nfe_numero
-      AND notas.nfe_dataEmissao BETWEEN DATE(:dataInicial) AND DATE(:dataFinal)
-      AND itens.item_sku LIKE :skuFilter
-      GROUP BY item_sku
-      ORDER BY sku LIMIT 0,50';
+  $sql='SELECT
+        itens.item_sku as sku,
+        itens.item_descricao as produto,
+        count(itens.id) as vendas
+        FROM bs_notas_itens as itens, bs_notas as notas
+        WHERE
+        itens.item_cfop IN (:nfe_cfops1,:nfe_cfops2)
+        AND itens.item_numeroNota = notas.nfe_numero
+        AND notas.nfe_dataEmissao BETWEEN DATE(:dataInicial) AND DATE(:dataFinal)
+        AND itens.item_sku LIKE :skuFilter
+        GROUP BY item_sku
+        ORDER BY sku LIMIT 0,50';
 
     $res = dbf($sql,array(
                           ':skuFilter'=>"$desc%",
@@ -111,23 +111,23 @@ $sql='SELECT
 }
 
 function listaTodosPedidos($dataInicial,$dataFinal){ /*em uso ceospanel dashboard*/
-$sql  = "SELECT
-        pedidos.data as dataPedido,
-        pedidos.pedido_loja as numeroPedido,
-        pedidos.loja as numeroLoja,
-        TRIM(BOTH '\"' FROM JSON_EXTRACT(pedidos.pedido_json,'$.nota.numero')) AS Nfe,
-        TRIM(BOTH '\"' FROM JSON_EXTRACT(pedidos.pedido_json,'$.cliente.nome')) AS cliente,
-        TRIM(BOTH '\"' FROM JSON_EXTRACT(pedidos.pedido_json,'$.cliente.cep')) as CepCliente,
-        TRIM(BOTH '\"' FROM JSON_EXTRACT(pedidos.pedido_json,'$.cliente.uf')) as ufCliente,
-        TRIM(BOTH '\"' FROM JSON_EXTRACT(pedidos.pedido_json,'$.cliente.email')) as emailCliente,
-        TRIM(BOTH '\"' FROM JSON_EXTRACT(pedidos.pedido_json,'$.totalvenda')) as valorPedido,
-        pedidos.situacao as situacao
-        FROM
-        bs_pedidos as pedidos
-        WHERE
-        pedidos.data BETWEEN DATE(:dataInicial) AND DATE(:dataFinal)
-        AND JSON_EXTRACT(pedidos.pedido_json,'$.tipoIntegracao') = 'CoreCommerce'
-        ORDER BY dataPedido DESC";
+  $sql  = "SELECT
+          pedidos.data as dataPedido,
+          pedidos.pedido_loja as numeroPedido,
+          pedidos.loja as numeroLoja,
+          TRIM(BOTH '\"' FROM JSON_EXTRACT(pedidos.pedido_json,'$.nota.numero')) AS Nfe,
+          TRIM(BOTH '\"' FROM JSON_EXTRACT(pedidos.pedido_json,'$.cliente.nome')) AS cliente,
+          TRIM(BOTH '\"' FROM JSON_EXTRACT(pedidos.pedido_json,'$.cliente.cep')) as CepCliente,
+          TRIM(BOTH '\"' FROM JSON_EXTRACT(pedidos.pedido_json,'$.cliente.uf')) as ufCliente,
+          TRIM(BOTH '\"' FROM JSON_EXTRACT(pedidos.pedido_json,'$.cliente.email')) as emailCliente,
+          TRIM(BOTH '\"' FROM JSON_EXTRACT(pedidos.pedido_json,'$.totalvenda')) as valorPedido,
+          pedidos.situacao as situacao
+          FROM
+          bs_pedidos as pedidos
+          WHERE
+          pedidos.data BETWEEN DATE(:dataInicial) AND DATE(:dataFinal)
+          AND JSON_EXTRACT(pedidos.pedido_json,'$.tipoIntegracao') = 'CoreCommerce'
+          ORDER BY dataPedido DESC";
 
 
   //$res = dbf($sql,array(':dataInicial'=>$dataInicial,':dataFinal'=>$dataFinal),'fetch','ufowayco_blingsinc');
@@ -298,21 +298,3 @@ function totalDeBonificacoes_noPeriodo($dataInicial,$dataFinal){ /*em uso ceospa
   return $result;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-?>

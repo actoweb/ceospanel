@@ -1,4 +1,5 @@
-<div class="card-header"style="min-width:600px;">
+<div class="card" style="min-width:600px;">
+<div class="card-header">
 <h4>Ítens relacionados</h4>
 </div>
 <div class="card-body">
@@ -177,6 +178,5 @@ if(count($dt_table)>0){
 ?>
 
 
-</div>
 </div>
 </div>
