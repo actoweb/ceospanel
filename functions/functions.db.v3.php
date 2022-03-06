@@ -47,7 +47,7 @@ function dbf($query='',$args=array(),$ret='',$db='',$dbuser=''){
   return $results;
 }
 
-function deleteDB($tabela,$campos=array(),$WHERE=''){
+function deleteDB($tabela,$campos=array(),$WHERE='',$showSQL=false){
   $into='';
   $arr    = array();
   if(count($campos)>0){
@@ -59,11 +59,16 @@ function deleteDB($tabela,$campos=array(),$WHERE=''){
   }
   $sql = "DELETE FROM ${tabela} $WHERE";
   $res = dbf($sql,$arr);
+  if($showSQL==true){
+  echo $sql;
+  echo "<br />\n";
+  print_r($arr);
+  }
   return $res;
 }
 
 
-function updateDB($tabela,$campos=array(),$WHERE=''){
+function updateDB($tabela,$campos=array(),$WHERE='',$showSQL=false){
   $into='';
   $arr    = array();
   if(count($campos)>0){
@@ -77,11 +82,16 @@ function updateDB($tabela,$campos=array(),$WHERE=''){
   }
   $sql = "UPDATE ${tabela} SET $into $WHERE";
   $res = dbf($sql,$arr);
+  if($showSQL==true){
+  echo $sql;
+  echo "<br />\n";
+  print_r($arr);
+  }
   return $res;
 }
 
 
-function insertDB($tabela,$campos=array()){
+function insertDB($tabela,$campos=array(),$showSQL=false){
   $into='';
   $arr    = array();
   if(count($campos)>0){
@@ -95,9 +105,53 @@ function insertDB($tabela,$campos=array()){
   }
   $sql = "INSERT ${tabela} SET $into";
   $res = dbf($sql,$arr);
+  if($showSQL==true){
+  echo $sql;
+  echo "<br />\n";
+  print_r($arr);
+  }
   return $res;
 }
 
+
+function selectDB2($campos,$tabela,$condicao=array(),$order='',$showSQL=false){
+  $where='';
+  $arr    = array();
+  if(count($condicao)>0){
+    $where  = ' WHERE ';
+    $n      = 0;
+    foreach($condicao as $key => $val){
+
+      if(strstr($key,':!=')){//pesquisar campos diferentes de
+        $key = str_replace(':!=','',$key);
+        $valueSeach = "!= :$key";
+      }
+      elseif(strstr($key,":LIKE")||strstr($key,":like")){//pesquisa campos com LIKE
+        $key = str_replace(':LIKE','',$key);
+        $valueSeach = "LIKE :$key";
+      }
+      elseif(strstr($key,':!')){//pesquisar campos diferente de vazio
+        $key = str_replace(':!','',$key);
+        $valueSeach = "!= ''";
+      }
+      else{//pesquisar campos com correspondencia padrao
+        $valueSeach = " = :$key";
+      }
+      if($n==0) {$where .= "$key $valueSeach ";}
+      else      {$where .= " AND $key $valueSeach";}
+      $t        = "$key";
+      $arr["$t"]= $val; $n++;
+    }
+  }
+  $sql = "SELECT $campos FROM ${tabela}$where $order";
+  if($showSQL==true){
+  echo $sql;
+  echo "<br />\n";
+  print_r($arr);
+  }
+  $res = dbf($sql,$arr,'fetch');
+  return $res;
+}
 
 function selectDB($campos,$tabela,$condicao=array(),$order=''){
   $where='';
